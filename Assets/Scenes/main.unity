@@ -646,6 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5000
+  maxReflections: 50
 --- !u!4 &765971839
 Transform:
   m_ObjectHideFlags: 0
