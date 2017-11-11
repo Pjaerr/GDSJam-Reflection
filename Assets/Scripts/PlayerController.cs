@@ -26,23 +26,26 @@ public class PlayerController : MonoBehaviour
 		/*Checks for WASD, and increases or decreases x/y by 1, and then translates this player by those amounts
 		multiplied by the step created above.*/
 		
+		/*
+		float angleX = Mathf.Cos(30);
+		float angleY = Mathf.Sin(45);*/
+
 		float x = 0;
 		float y = 0;
 
-		if (Input.GetKey(KeyCode.W))
+		if (Input.GetKey(KeyCode.D))
 		{
 			y += 1;
 		}
-		if (Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.A))
 		{
 			y -= 1;
 		}
-
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.S))
 		{
 			x -= 1;
 		}
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.W))
 		{
 			x += 1;
 		}
