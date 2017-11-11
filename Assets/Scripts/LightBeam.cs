@@ -40,10 +40,15 @@ public class LightBeam : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(previousHitPoint, direction, out hit))
 		{
+			Debug.DrawRay(previousHitPoint, direction, Color.green, 0.1f);
 			lineNumber++;
 
 			if (lineNumber < 10)
 			{
+				if (hit.collider.tag == "Player")
+				{
+					playerScript.KillPlayer();
+				}
 				/*Stops the raycast (which controls where the line goes) when it collides with
 				a gameobject tagged as "Obstacle".*/
 				if (hit.collider.tag == "Obstacle")
