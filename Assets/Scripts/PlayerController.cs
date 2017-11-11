@@ -52,5 +52,10 @@ public class PlayerController : MonoBehaviour
 
 		trans.Translate(new Vector3(x * step, y * step));
 	}
+
+	public void KillPlayer()
+	{
+		trans.position = GameManager.instance.startPos.position;
+	}
 	
 }
