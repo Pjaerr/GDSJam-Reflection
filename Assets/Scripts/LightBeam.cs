@@ -15,12 +15,13 @@ public class LightBeam : MonoBehaviour
 		lineRenderer = GetComponent<LineRenderer>();
 
 		playerScript = GameManager.instance.Player.GetComponent<PlayerController>();
-		Vector3 direction = trans.right;
 	}
+
 
 	
 	void Update()
 	{
+		//Sets the start position of our laser to the initial objects position
 		lineRenderer.SetPosition(0, trans.position);
 
 		RaycastHit hit;
