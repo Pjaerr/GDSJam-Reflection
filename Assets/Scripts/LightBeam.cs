@@ -13,71 +13,55 @@ public class LightBeam : MonoBehaviour
 	{
 		trans = GetComponent<Transform>();
 		lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer.positionCount = 3;
 
 		playerScript = GameManager.instance.Player.GetComponent<PlayerController>();
 	}
 
+	int lineNumber = 0;
 
-	
 	void Update()
 	{
-		//Sets the start position of our laser to the initial objects position
-		lineRenderer.SetPosition(0, trans.position);
+		lineNumber = 0;
+		TheReflectionDetectionFunction();
+	}
 
+	void TheReflectionDetectionFunction()
+	{
+		//Sets the start position of our laser to the initial objects position
+		lineRenderer.SetPosition(lineNumber, trans.position);
+
+		//Fires a raycast from start positon to the right.
 		RaycastHit hit;
 		if (Physics.Raycast(trans.position, trans.right, out hit))
 		{
-			
+			lineNumber++;
+			/*Stops the raycast (which controls where the line goes) when it collides with
+			a gameobject tagged as "Obstacle".*/
+			if (hit.collider.tag == "Obstacle")
+			{
+				lineRenderer.SetPosition(lineNumber, hit.point);
+
+				while (lineNumber < lineRenderer.positionCount)
+				{
+					lineNumber++;
+					lineRenderer.SetPosition(lineNumber, hit.point);
+				}
+			}
+
 			if (hit.collider.tag == "Mirror")
 			{
 				lineRenderer.SetPosition(1, hit.point);
 
-				Reflect(trans.position, hit.point, hit.collider.transform.rotation);
-			}
-			if (hit.collider.tag == "Obstacle")
-			{
-				lineRenderer.SetPosition(1, hit.point);
-			}
-			if (hit.collider.tag == "Player")
-			{
-				playerScript.KillPlayer();
-			}
+				Vector3 pos = Vector3.Reflect(hit.point - trans.position, hit.normal) * maxDistance + hit.point;
+				lineRenderer.SetPosition(2, pos);
 
-			if (hit.collider)
-			{
-				lineRenderer.SetPosition(1, hit.point);
+				TheReflectionDetectionFunction();
 			}
 		}
 		else
 		{
-			lineRenderer.SetPosition(1, trans.right * maxDistance);
-		}
-	}
-
-	void Reflect(Vector3 startPoint, Vector3 endPoint, Quaternion rotation)
-	{
-		Debug.Log("EndPoint: " + endPoint + " , Rotation: " + rotation.eulerAngles);
-
-		RaycastHit hit;
-		if (Physics.Raycast(endPoint, new Vector3(-endPoint.x, -endPoint.y + 10, -endPoint.z), out hit))
-		{
-			if (hit.collider.tag == "Mirror")
-			{
-				lineRenderer.SetPosition(1, hit.point);
-				Reflect(hit.point, hit.collider.transform.rotation);
-			}
-			if (hit.collider.tag == "Obstacle")
-			{
-				lineRenderer.SetPosition(1, hit.point);
-			}
-			if (hit.collider.tag == "Player")
-			{
-				playerScript.KillPlayer();
-			}
-		}
-		else
-		{
-			lineRenderer.SetPosition(1, direction * maxDistance);
+			lineRenderer.SetPosition(lineNumber, hit.point * maxDistance);
 		}
 	}
 }
