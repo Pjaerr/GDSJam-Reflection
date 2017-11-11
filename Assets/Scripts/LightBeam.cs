@@ -68,7 +68,6 @@ public class LightBeam : MonoBehaviour
 
 				//Creates a new ray with an origin of the current hit point, going in the reflected direction.
 				ray = new Ray(hit.point, inDirection);  
-				
 
 				//Draw the normal - can only be seen at the Scene tab, for debugging purposes  
 				//Debug.DrawRay(hit.point, hit.normal*3, Color.blue);  

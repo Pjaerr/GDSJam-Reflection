@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		Movement();
+
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 	
 
@@ -25,10 +31,6 @@ public class PlayerController : MonoBehaviour
 
 		/*Checks for WASD, and increases or decreases x/y by 1, and then translates this player by those amounts
 		multiplied by the step created above.*/
-		
-		/*
-		float angleX = Mathf.Cos(30);
-		float angleY = Mathf.Sin(45);*/
 
 		float x = 0;
 		float y = 0;
