@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public GameObject Player;
 
 	public Transform startPos;
+	[SerializeField] private GameObject popUpUI;
 	
 	public static GameManager instance = null;
 
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
 		InitializeSingleton();
 	}
 
+<<<<<<< HEAD
 	void Start()
 	{
 		if (isSingleLine) 
@@ -37,6 +40,11 @@ public class GameManager : MonoBehaviour
 			targetHits[1] = true;
 		}
 
+=======
+	public void enablePopUpUI(bool state)
+	{
+		popUpUI.SetActive(state);
+>>>>>>> programmerA
 	}
 
 	public void openDoor(int mirrorNumber)
