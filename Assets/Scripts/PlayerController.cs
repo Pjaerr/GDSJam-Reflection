@@ -5,24 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-	Transform trans; //Cached reference to this object's transform.
-	[SerializeField] float movementSpeed; //Movement Speed, adjustable in the editor.
+	private Transform trans; //Cached reference to this object's transform.
+	private Rigidbody rb;
+	[SerializeField] private float movementSpeed; //Movement Speed, adjustable in the editor.
 
 	void Start()
 	{
 		trans = GetComponent<Transform>(); //Stores reference to this object's transform.
+		rb = GetComponent<Rigidbody>();
 	}
 
 	//Update() is called every frame.
 	void Update()
 	{
-		Movement();
+		
 
 		if (Input.GetKeyDown(KeyCode.P))
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
+
+	void FixedUpdate() 
+	{
+		Movement();
+    }
 	
 
 	void Movement()
@@ -52,6 +59,7 @@ public class PlayerController : MonoBehaviour
 			x += 1;
 		}
 
+		rb.MovePosition(rb.position + new Vector3(x * step, y * step));
 		trans.Translate(new Vector3(x * step, y * step));
 	}
 
