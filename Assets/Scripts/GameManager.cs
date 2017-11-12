@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField] private bool isSingleLine = false;
     bool[] targetHits = new bool[2];
 	public GameObject Player;
 
@@ -29,6 +30,15 @@ public class GameManager : MonoBehaviour
 		InitializeSingleton();
 	}
 
+	void Start()
+	{
+		if (isSingleLine) 
+		{
+			targetHits[1] = true;
+		}
+
+	}
+
 	public void openDoor(int mirrorNumber)
 	{
         if (mirrorNumber == 0)
@@ -39,12 +49,12 @@ public class GameManager : MonoBehaviour
         {
             targetHits[1] = true;
         }
-
-        if (targetHits[0] && targetHits[1])
-        {
-            //Do end level stuff.
-            Debug.Log("Door Open!");
-        }
+			
+		if (targetHits [0] && targetHits [1]) 
+		{
+			//Do end level stuff.
+			Debug.Log ("Door Open!");
+		} 
 	}
 
 	public void nextLevel()

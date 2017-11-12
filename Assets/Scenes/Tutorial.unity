@@ -3617,6 +3617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3e561a47f485b4a851bccd022f9aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleLine: 1
   Player: {fileID: 1839120130}
   startPos: {fileID: 2108359126}
 --- !u!4 &1648683856
