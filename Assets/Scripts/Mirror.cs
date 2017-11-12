@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mirror : MonoBehaviour 
 {
@@ -31,15 +32,20 @@ public class Mirror : MonoBehaviour
 	{
 		if (playerIsTouching)
 		{
-			if (Input.GetKey(KeyCode.Q))
+			if (Input.GetKey(KeyCode.LeftArrow))
 			{
 				TurnMirror(0);
 			}
-			else if (Input.GetKey(KeyCode.E))
+			else if (Input.GetKey(KeyCode.RightArrow))
 			{
 				TurnMirror(1);
 			}
 		}
+	}
+
+	void showUI(bool state)
+	{
+		GameManager.instance.enablePopUpUI(state);
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -47,6 +53,7 @@ public class Mirror : MonoBehaviour
 		if (col.gameObject.tag == "Player")
 		{
 			playerIsTouching = true;
+			showUI(playerIsTouching);
 		}
 	}
 	void OnTriggerExit(Collider col)
@@ -54,6 +61,7 @@ public class Mirror : MonoBehaviour
 		if (col.gameObject.tag == "Player")
 		{
 			playerIsTouching = false;
+			showUI(playerIsTouching);
 		}
 	}
 }
