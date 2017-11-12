@@ -53,7 +53,7 @@ public class LightBeam : MonoBehaviour
 			if (hit.collider.tag == "Target") 
 			{
 				GameManager.instance.openDoor ();
-				origins.Add (hit.point);
+				origins.Add(hit.point);
 			}
 
 			if (hit.collider.tag == "Player")
