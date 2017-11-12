@@ -43,6 +43,7 @@ public class LightBeam : MonoBehaviour
 		}
 	}
 
+
 	
 	void TheReflectionDetectionFunction()
 	{
@@ -51,6 +52,7 @@ public class LightBeam : MonoBehaviour
 		//Fires a raycast from the ray origin to the ray direction.
 		if (Physics.Raycast(ray.origin, ray.direction, out hit))
 		{
+
 			if (hit.collider.tag == "Target") 
 			{
 				GameManager.instance.openDoor (id);
@@ -59,12 +61,14 @@ public class LightBeam : MonoBehaviour
 
 			if (hit.collider.tag == "Player")
 			{
+				GameManager.instance.closeDoor ();
 				playerScript.KillPlayer();
 			}
 
 			//If the raycast hits an obstacle. Set the current origin to hit.point.
-			if (hit.collider.tag == "Obstacle")
+			if (hit.collider.tag == "Obstacle" || hit.collider.tag == "Door")
 			{
+				GameManager.instance.closeDoor ();
 				origins.Add(hit.point);
 			}
 

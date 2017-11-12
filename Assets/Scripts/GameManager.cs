@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
 
 	public Transform startPos;
 	[SerializeField] private GameObject popUpUI;
+	[SerializeField] private GameObject endImage;
+
+	public Door doorScript;
 	
 	public static GameManager instance = null;
 
@@ -31,24 +35,30 @@ public class GameManager : MonoBehaviour
 	{
 		InitializeSingleton();
 	}
-
-<<<<<<< HEAD
+		
 	void Start()
 	{
+		
+	}
+			
+	public void enablePopUpUI(bool state)
+	{
+		popUpUI.SetActive(state);
+	}
+
+
+	public void openDoor(int mirrorNumber)
+	{
+		for (int i = 0; i < targetHits.Length; i++) 
+		{
+			targetHits [i] = false;
+		}
+
 		if (isSingleLine) 
 		{
 			targetHits[1] = true;
 		}
 
-=======
-	public void enablePopUpUI(bool state)
-	{
-		popUpUI.SetActive(state);
->>>>>>> programmerA
-	}
-
-	public void openDoor(int mirrorNumber)
-	{
         if (mirrorNumber == 0)
         {
             targetHits[0] = true;
@@ -60,14 +70,32 @@ public class GameManager : MonoBehaviour
 			
 		if (targetHits [0] && targetHits [1]) 
 		{
-			//Do end level stuff.
-			Debug.Log ("Door Open!");
+			//Show ui.
+			Debug.Log("YTOU EI4RNBGERIUHE");
+			doorScript.open (true);
 		} 
+		else if (targetHits [0]) 
+		{
+			doorScript.open (true);
+		}
+
+	}
+
+	public void closeDoor()
+	{
+		doorScript.open (false);
 	}
 
 	public void nextLevel()
 	{
-		
+		endImage.SetActive (true);
+		Time.timeScale = 0;
+	}
+
+
+	public void launchGame(int scene)
+	{
+		SceneManager.LoadScene (scene);
 	}
 }
 

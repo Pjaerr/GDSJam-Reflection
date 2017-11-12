@@ -42,11 +42,11 @@ public class PlayerController : MonoBehaviour
 		float x = 0;
 		float y = 0;
 
-		if (Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.A))
 		{
 			y += 1;
 		}
-		if (Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.D))
 		{
 			y -= 1;
 		}
@@ -59,13 +59,23 @@ public class PlayerController : MonoBehaviour
 			x += 1;
 		}
 
-		rb.MovePosition(rb.position + new Vector3(x * step, y * step));
-		trans.Translate(new Vector3(x * step, y * step));
+		rb.MovePosition(rb.position + new Vector3(x * step, 0, y * step));
+
 	}
 
 	public void KillPlayer()
 	{
 		trans.position = GameManager.instance.startPos.position;
 	}
+
+
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.gameObject.tag == "Door") 
+		{
+			GameManager.instance.nextLevel ();
+		}
+	}
+
 	
 }
