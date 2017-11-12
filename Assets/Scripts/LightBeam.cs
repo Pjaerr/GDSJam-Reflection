@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightBeam : MonoBehaviour 
 {
+    [SerializeField] private int id = 0;
 	private LineRenderer lineRenderer;
 	private Transform trans;
 	PlayerController playerScript; //Reference to player functions and variables.
@@ -52,8 +53,8 @@ public class LightBeam : MonoBehaviour
 		{
 			if (hit.collider.tag == "Target") 
 			{
-				GameManager.instance.openDoor ();
-				origins.Add(hit.point);
+				GameManager.instance.openDoor (id);
+				origins.Add (hit.point);
 			}
 
 			if (hit.collider.tag == "Player")
