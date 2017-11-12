@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Mirror
   - Obstacle
-  - obstacle
   - Target
   layers:
   - Default
