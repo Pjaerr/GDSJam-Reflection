@@ -50,6 +50,12 @@ public class LightBeam : MonoBehaviour
 		//Fires a raycast from the ray origin to the ray direction.
 		if (Physics.Raycast(ray.origin, ray.direction, out hit))
 		{
+			if (hit.collider.tag == "Target") 
+			{
+				GameManager.instance.openDoor ();
+				origins.Add (hit.point);
+			}
+
 			if (hit.collider.tag == "Player")
 			{
 				playerScript.KillPlayer();

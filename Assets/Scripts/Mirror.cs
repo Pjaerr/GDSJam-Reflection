@@ -18,11 +18,11 @@ public class Mirror : MonoBehaviour
 	{
 		if (direction == 0)
 		{
-			trans.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
+			trans.Rotate(new Vector3(0, 0, 1), -turnSpeed * Time.deltaTime);
 		}
 		else if (direction == 1)
 		{
-			trans.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
+			trans.Rotate(new Vector3(0, 0, 1), turnSpeed * Time.deltaTime);
 		}
 		
 	}

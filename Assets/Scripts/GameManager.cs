@@ -27,4 +27,17 @@ public class GameManager : MonoBehaviour
 	{
 		InitializeSingleton();
 	}
+
+	public void openDoor()
+	{
+		//Do end level stuff.
+		Debug.Log("Door Open!");
+	}
+
+	public void nextLevel()
+	{
+		
+	}
 }
+
+

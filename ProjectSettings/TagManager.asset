@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Mirror
   - Obstacle
-  - Block Limitations
   layers:
   - Default
   - TransparentFX
@@ -16,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - Block Limitations
-  - Player
-  - Dynamic Block
+  - 
+  - 
+  - 
   - 
   - 
   - 
