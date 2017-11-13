@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Mirror : MonoBehaviour 
 {
-	Transform trans;
+	private Transform trans;
 	[SerializeField] private float turnSpeed;
 
 	private bool playerIsTouching = false;
@@ -43,10 +43,12 @@ public class Mirror : MonoBehaviour
 		}
 	}
 
+	//Enable the arrow keys UI when in range of the mirror.
 	void showUI(bool state)
 	{
-		GameManager.instance.enablePopUpUI(state);
+		GameManager.instance.ui.enablePopUpUI(state);
 	}
+
 
 	void OnTriggerEnter(Collider col)
 	{

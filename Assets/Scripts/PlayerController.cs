@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
 	//Update() is called every frame.
 	void Update()
 	{
-		
-
 		if (Input.GetKeyDown(KeyCode.P))
 		{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField] private bool isSingleLine = false;
-    bool[] targetHits = new bool[2];
+	//References
 	public GameObject Player;
-
 	public Transform startPos;
-	[SerializeField] private GameObject popUpUI;
-	[SerializeField] private GameObject endImage;
-
 	public Door doorScript;
+	[HideInInspector] public UI ui;
+
+	//Variables
+	[SerializeField] private bool isSingleLine = false; 	//I WILL CREATE A BETTER SOLUTION THAT IS EFFICIENT - JOSH J.
+    private bool[] targetHits = new bool[2];
 	
 	public static GameManager instance = null;
-
 
 	void InitializeSingleton()
 	{
@@ -35,18 +33,21 @@ public class GameManager : MonoBehaviour
 	{
 		InitializeSingleton();
 	}
-		
+
 	void Start()
 	{
-		
+		ui = GetComponent<UI>();
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			ui.togglePauseScreen(true);
+		}
 	}
 			
-	public void enablePopUpUI(bool state)
-	{
-		popUpUI.SetActive(state);
-	}
-
-
+	
 	public void openDoor(int mirrorNumber)
 	{
 		for (int i = 0; i < targetHits.Length; i++) 
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 			targetHits [i] = false;
 		}
 
-		if (isSingleLine) 
+		if (isSingleLine) //I WILL CREATE A BETTER SOLUTION THAT IS EFFICIENT - JOSH J.
 		{
 			targetHits[1] = true;
 		}
@@ -68,34 +69,21 @@ public class GameManager : MonoBehaviour
             targetHits[1] = true;
         }
 			
-		if (targetHits [0] && targetHits [1]) 
+		if (targetHits [0] && targetHits [1])  //If both lights are inside of a target.
 		{
-			//Show ui.
-			Debug.Log("YTOU EI4RNBGERIUHE");
 			doorScript.open (true);
 		} 
-		else if (targetHits [0]) 
-		{
-			doorScript.open (true);
-		}
 
 	}
 
-	public void closeDoor()
+	public void closeDoor() //Used in external scripts to access the door functionality.
 	{
 		doorScript.open (false);
 	}
 
 	public void nextLevel()
 	{
-		endImage.SetActive (true);
-		Time.timeScale = 0;
-	}
-
-
-	public void launchGame(int scene)
-	{
-		SceneManager.LoadScene (scene);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 }
 
