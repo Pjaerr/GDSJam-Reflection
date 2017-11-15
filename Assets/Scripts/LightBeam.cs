@@ -25,7 +25,7 @@ public class LightBeam : MonoBehaviour
 	
 
 	void Update()
-	{
+	{ 
 		origins.Clear(); //Clears the list of origins.
 		ray = new Ray(trans.position, trans.right); //Generates the initial ray.
 		//Debug.DrawRay(trans.position,trans.right * 100, Color.magenta);  
