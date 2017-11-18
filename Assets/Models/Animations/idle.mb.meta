@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4e1615b4b71915d48a7b4833c18fd61a
-timeCreated: 1510507946
+guid: 70ef3a7df6d72ae4cbac1bcd11813c57
+timeCreated: 1511000317
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -198,9 +198,9 @@ ModelImporter:
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
-    bakeSimulation: 0
+    bakeSimulation: 1
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -219,7 +219,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -236,7 +236,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
 	private Transform trans; //Cached reference to this object's transform.
 	private Rigidbody rb;
 	[SerializeField] private float movementSpeed; //Movement Speed, adjustable in the editor.
+	private Animator animator;
 
 	void Start()
 	{
 		trans = GetComponent<Transform>(); //Stores reference to this object's transform.
 		rb = GetComponent<Rigidbody>();
+		animator = GetComponent<Animator>();
 	}
 
 	//Update() is called every frame.
@@ -43,18 +45,22 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey(KeyCode.A))
 		{
 			y += 1;
+			animator.SetTrigger("Walk");
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
 			y -= 1;
+			animator.SetTrigger("Walk");
 		}
 		if (Input.GetKey(KeyCode.S))
 		{
 			x -= 1;
+			animator.SetTrigger("Walk");
 		}
 		if (Input.GetKey(KeyCode.W))
 		{
 			x += 1;
+			animator.SetTrigger("Walk");
 		}
 
 		rb.MovePosition(rb.position + new Vector3(x * step, 0, y * step));
