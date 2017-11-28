@@ -44,13 +44,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            animator.SetTrigger("Walk");
             y += 1;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            animator.SetTrigger("Walk");
             y -= 1;
         }
 

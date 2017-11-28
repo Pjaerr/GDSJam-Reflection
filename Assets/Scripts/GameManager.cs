@@ -5,86 +5,63 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	//References
-	public GameObject Player;
-	public Transform startPos;
-	public Door doorScript;
-	[HideInInspector] public UI ui;
+    //References
+    public GameObject Player;
+    public Transform startPos;
+    public Door doorScript;
+    [HideInInspector] public UI ui;
 
-	//Variables
-	[SerializeField] private bool isSingleLine = false; 	//I WILL CREATE A BETTER SOLUTION THAT IS EFFICIENT - JOSH J.
+    //Variables
+    [SerializeField] private bool isSingleLine = false; 	//I WILL CREATE A BETTER SOLUTION THAT IS EFFICIENT - JOSH J.
     private bool[] targetHits = new bool[2];
-	
-	public static GameManager instance = null;
 
-	void InitializeSingleton()
-	{
-		if (instance == null)	//Check if an instance of GameManager already exists.
-		{
-			instance = this; 	//If not, make this that instance.
-		}
-		else if (instance != this)	//If an instance already exists and it isn't this.
-		{
-			Destroy(gameObject);	//Destroy this.
-		}
-	}
+    public static GameManager instance = null;
 
-	void Awake()
-	{
-		InitializeSingleton();
-	}
-
-	void Start()
-	{
-		ui = GetComponent<UI>();
-	}
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			ui.togglePauseScreen(true);
-		}
-	}
-			
-	
-	public void openDoor(int mirrorNumber)
-	{
-		for (int i = 0; i < targetHits.Length; i++) 
-		{
-			targetHits [i] = false;
-		}
-
-		if (isSingleLine) //I WILL CREATE A BETTER SOLUTION THAT IS EFFICIENT - JOSH J.
-		{
-			targetHits[1] = true;
-		}
-
-        if (mirrorNumber == 0)
+    void InitializeSingleton()
+    {
+        if (instance == null)   //Check if an instance of GameManager already exists.
         {
-            targetHits[0] = true;
+            instance = this;    //If not, make this that instance.
         }
-        else if (mirrorNumber == 1)
+        else if (instance != this)  //If an instance already exists and it isn't this.
         {
-            targetHits[1] = true;
+            Destroy(gameObject);    //Destroy this.
         }
-			
-		if (targetHits [0] && targetHits [1])  //If both lights are inside of a target.
-		{
-			doorScript.open (true);
-		} 
+    }
 
-	}
+    void Awake()
+    {
+        InitializeSingleton();
+    }
 
-	public void closeDoor() //Used in external scripts to access the door functionality.
-	{
-		doorScript.open (false);
-	}
+    void Start()
+    {
+        ui = GetComponent<UI>();
+    }
 
-	public void nextLevel()
-	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-	}
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ui.togglePauseScreen(true);
+        }
+    }
+
+
+    public void openDoor(int mirrorNumber)
+    {
+        doorScript.open(true);
+    }
+
+    public void closeDoor() //Used in external scripts to access the door functionality.
+    {
+        doorScript.open(false);
+    }
+
+    public void nextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
 
 
