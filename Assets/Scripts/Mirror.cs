@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mirror : MonoBehaviour 
 {
-	Transform trans;
+	private Transform trans;
 	[SerializeField] private float turnSpeed;
 
 	private bool playerIsTouching = false;
@@ -31,22 +32,30 @@ public class Mirror : MonoBehaviour
 	{
 		if (playerIsTouching)
 		{
-			if (Input.GetKey(KeyCode.Q))
+			if (Input.GetKey(KeyCode.LeftArrow))
 			{
 				TurnMirror(0);
 			}
-			else if (Input.GetKey(KeyCode.E))
+			else if (Input.GetKey(KeyCode.RightArrow))
 			{
 				TurnMirror(1);
 			}
 		}
 	}
 
+	//Enable the arrow keys UI when in range of the mirror.
+	void showUI(bool state)
+	{
+		GameManager.instance.ui.enablePopUpUI(state);
+	}
+
+
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.tag == "Player")
 		{
 			playerIsTouching = true;
+			showUI(playerIsTouching);
 		}
 	}
 	void OnTriggerExit(Collider col)
@@ -54,6 +63,7 @@ public class Mirror : MonoBehaviour
 		if (col.gameObject.tag == "Player")
 		{
 			playerIsTouching = false;
+			showUI(playerIsTouching);
 		}
 	}
 }

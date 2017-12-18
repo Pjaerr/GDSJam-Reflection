@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Mirror
   - Obstacle
-  - obstacle
   - Target
+  - Door
+  - UI Manager
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Block Limitations
+  - Dynamic Block
+  - Player
   - 
   - 
   - 
